@@ -7,12 +7,12 @@ import torch
 import torch.backends.cudnn as cudnn
 from numpy import random
 
-from models.experimental import attempt_load
-from utils.datasets import LoadStreams, LoadImages
-from utils.general import check_img_size, check_requirements, check_imshow, non_max_suppression, apply_classifier, \
+from MCGaze_demo.yolo_head.models.experimental import attempt_load
+from MCGaze_demo.yolo_head.utils.datasets import LoadStreams, LoadImages
+from MCGaze_demo.yolo_head.utils.general import check_img_size, check_requirements, check_imshow, non_max_suppression, apply_classifier, \
     scale_coords, xyxy2xywh, strip_optimizer, set_logging, increment_path
-from utils.plots import plot_one_box
-from utils.torch_utils import select_device, load_classifier, time_synchronized
+from MCGaze_demo.yolo_head.utils.plots import plot_one_box
+from MCGaze_demo.yolo_head.utils.torch_utils import select_device, load_classifier, time_synchronized
 
 
 def detect(opt,save_img=False):
@@ -20,7 +20,7 @@ def detect(opt,save_img=False):
     save_txt = True
     webcam = False
     # Directories
-    save_dir = Path('/data/yrguan/gaze/code/MCgaze/MCGaze_demo/result')  # increment run
+    save_dir = Path('/home/s14-htx/Documents/kailin/MCGaze/MCGaze_demo/result')  # increment run
     (save_dir / 'labels' if save_txt else save_dir).mkdir(parents=True, exist_ok=True)  # make dir
 
     # Initialize
@@ -136,7 +136,7 @@ def detect(opt,save_img=False):
 
 def det_head(img):
     parser = argparse.ArgumentParser()
-    parser.add_argument('--weights', nargs='+', type=str, default='/data/yrguan/gaze/code/MCgaze/MCGaze_demo/crowdhuman_yolov5m.pt', help='model.pt path(s)')
+    parser.add_argument('--weights', nargs='+', type=str, default='/home/s14-htx/Documents/kailin/MCGaze/MCGaze_demo/crowdhuman_yolov5m.pt', help='model.pt path(s)')
     parser.add_argument('--source', type=str, default=img, help='source')  # file/folder, 0 for webcam
     parser.add_argument('--img-size', type=int, default=640, help='inference size (pixels)')
     parser.add_argument('--conf-thres', type=float, default=0.25, help='object confidence threshold')
